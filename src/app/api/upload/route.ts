@@ -20,7 +20,10 @@ export async function POST(request: NextRequest) {
   const filename = `${file.name}`
   const path = `/tmp/${key}---${filename}`
   await writeFile(path, buffer)
-  console.log(`open ${path} to see the uploaded file`)
 
-  return NextResponse.json({ success: true, key })
+  const protocol = request.headers.get("x-forwarded-proto") || "https"
+  const host = request.headers.get("host") || "localhost:3000"
+  const baseUrl = `${protocol}://${host}`
+
+  return NextResponse.json({ success: true, key, url: `${baseUrl}/d/${key}` })
 }
