@@ -43,8 +43,8 @@ export async function GET(
   })
 }
 
-export const config = {
-  api: {
-    responseLimit: false,
-  },
-}
+// export const config = {
+//   api: {
+//     responseLimit: false,
+//   },
+// }
